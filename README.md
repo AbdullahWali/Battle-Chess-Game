@@ -6,7 +6,7 @@ Chess Battle is a chess game variant where the pieces in the game have health po
 ### Members
 * Abdullah Al Wali 21402793
 * Mert Ege Can 21400933
-* Melih Sancak 21207085
+* Melih Sancak 21101785
 * Shahriyar Mammadli 21402720
 
 ###Instructor 
