@@ -1,17 +1,21 @@
 package GameEntities.Pieces;
 import GameEntities.Abilities.Ability;
 
-import java.awt.*;
+
 
 /**
 
  */
 public abstract class  Piece {
 
+    public enum PieceColor {
+        WHITE, BLACK
+    }
+
     private int maxHp;
     private int hp;
     private int ap;
-    private Color color;
+    private PieceColor color;
     private Ability skill;
 
 
@@ -21,6 +25,11 @@ public abstract class  Piece {
         if (curX == tarX && curY == tarY ) return false;
         return true;
     };
+
+    public PieceColor getColor(){
+        return color;
+
+    }
 
 
 }
