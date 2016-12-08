@@ -15,7 +15,7 @@ public class Board {
     }
 
     public void removePiece(int tarX, int tarY) {
-        //Review: Check if safety constraints needed
+        //Review: Check if safety constraints needed    
         board[tarX][tarY] = null;
     }
 
