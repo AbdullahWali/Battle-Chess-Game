@@ -31,6 +31,21 @@ public class Board {
             board[curX][curY] = null;
     }
 
+    //Checks Dead Pieces and removes them
+    public void cleanBoard() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Piece curPiece = getPiece(i, j);
+                if (curPiece != null) {
+                    if (curPiece.getHP() <= 0)
+                        removePiece(i, j);
+                    curPiece.getAbility().updateCooldown();
+
+                }
+            }
+        }
+    }
+
 
 
 }

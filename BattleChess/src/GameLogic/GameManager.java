@@ -23,10 +23,15 @@ public class GameManager {
     private Board gameBoard;
     private int turn;
 
-    
 
 
     //Methods
+    public Piece.PieceColor getTurn() {
+        if (turn % 2 == 0)
+            return Piece.PieceColor.BLACK;
+        else
+            return Piece.PieceColor.WHITE;
+    }
     public boolean isGameOver() {
         if  ( gameMode == GameMode.ELIMINATION) {
             boolean whiteTeamDead = true;
@@ -63,5 +68,31 @@ public class GameManager {
         return false;
     }
 
+    public void attack( int curX, int curY, int tarX, int tarY ){
+        //Move Validation:
+        Piece selectedPiece = gameBoard.getPiece(curX,curY);
+        Piece enemyPiece = gameBoard.getPiece(tarX,tarY);
+        if (selectedPiece == null || enemyPiece == null)
+            return;
+        if (!selectedPiece.isValid(curX,curY,tarX, tarY))
+            return;
+        if (selectedPiece.getColor() == enemyPiece.getColor())
+            return;
+        if (getTurn() != selectedPiece.getColor())
+            return;
+
+        //Attaaaaaack
+        enemyPiece.changeHP(-(selectedPiece.getAP()));
+        endTurn();
+
+    }
+
+    private void endTurn() {
+        gameBoard.cleanBoard();
+        if (isGameOver()) {
+            //TODO: Create game over thingy
+        }
+        turn++;
+    }
 
 }

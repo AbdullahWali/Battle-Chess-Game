@@ -8,6 +8,7 @@ import GameEntities.Abilities.Ability;
  */
 public abstract class  Piece {
 
+
     public enum PieceColor {
         WHITE, BLACK
     }
@@ -31,5 +32,25 @@ public abstract class  Piece {
 
     }
 
+    public int getAP() {
+        return ap;
+    }
+
+    public void changeHP( int amount) {
+        hp = hp + amount;
+        if (hp < 0 )
+            hp = 0;
+
+        if (hp > maxHp)
+            hp = maxHp;
+    }
+
+    public int getHP() {
+        return hp;
+    }
+
+    public Ability getAbility() {
+        return skill;
+    }
 
 }

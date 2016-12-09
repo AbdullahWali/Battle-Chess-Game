@@ -25,7 +25,7 @@ public abstract class Ability {
     }
 
 
-    public void resetCooldownLeft(){
+    protected void resetCooldownLeft(){
         cooldownLeft = cooldown;
     }
 
@@ -37,6 +37,7 @@ public abstract class Ability {
             return false;
         }
         else {
+            resetCooldownLeft();
             return true;
         }
     }
