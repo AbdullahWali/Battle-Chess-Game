@@ -11,6 +11,7 @@ public class King extends  Piece{
             return false;
         else if (Math.abs(curX - tarX) > 1 || Math.abs(curY - tarY) > 1)
             return false;
-        return true;
+        else
+            return true;
     }
 }
