@@ -5,7 +5,7 @@ import GameEntities.Pieces.Piece;
 
 public class GameManager {
 
-    private enum GameMode {
+    public enum GameMode {
            ELIMINATION, ASSASSINATION
     }
 
@@ -17,6 +17,11 @@ public class GameManager {
 
 
     private GameMode gameMode;
+
+    public Board getGameBoard() {
+        return gameBoard;
+    }
+
     private Board gameBoard;
     private int turn;
 

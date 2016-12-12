@@ -1,6 +1,6 @@
 package GameLogic;
 
-import GameEntities.Pieces.*;
+import GameEntities.Pieces.Piece;
 
 
 public class Board {
@@ -8,31 +8,6 @@ public class Board {
 
     public Board() {
         board = new Piece[8][8];
-
-        //Construct White Pieces
-        board[0][0] = new Rook(Piece.PieceColor.WHITE);
-        board[1][0] = new Knight(Piece.PieceColor.WHITE);
-        board[2][0] = new Bishop(Piece.PieceColor.WHITE);
-        board[3][0] = new King(Piece.PieceColor.WHITE);
-        board[4][0] = new Queen(Piece.PieceColor.WHITE);
-        board[5][0] = new Bishop(Piece.PieceColor.WHITE);
-        board[6][0] = new Knight(Piece.PieceColor.WHITE);
-        board[7][0] = new Rook(Piece.PieceColor.WHITE);
-        for (int i = 0 ; i < 8; i++ )
-            board[i][1] = new Pawn(Piece.PieceColor.WHITE);
-
-
-        //Construct Black Pieces
-        board[0][7] = new Rook(Piece.PieceColor.WHITE);
-        board[1][7] = new Knight(Piece.PieceColor.WHITE);
-        board[2][7] = new Bishop(Piece.PieceColor.WHITE);
-        board[3][7] = new King(Piece.PieceColor.WHITE);
-        board[4][7] = new Queen(Piece.PieceColor.WHITE);
-        board[5][7] = new Bishop(Piece.PieceColor.WHITE);
-        board[6][7] = new Knight(Piece.PieceColor.WHITE);
-        board[7][7] = new Rook(Piece.PieceColor.WHITE);
-        for (int i = 0 ; i < 8; i++ )
-            board[i][6] = new Pawn(Piece.PieceColor.WHITE);
     }
 
     public boolean isOccupied( int tarX, int tarY) {
@@ -41,7 +16,7 @@ public class Board {
     }
 
     public void removePiece(int tarX, int tarY) {
-        //TODO:Review: Check if safety constraints needed
+        //Review: Check if safety constraints needed
         board[tarX][tarY] = null;
     }
 

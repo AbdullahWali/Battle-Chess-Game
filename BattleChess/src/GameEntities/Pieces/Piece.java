@@ -9,7 +9,7 @@ public abstract class  Piece {
     }
 
     protected int maxHp;
-    protected int hp;
+    public int hp;
     protected int ap;
     protected PieceColor color;
     protected Ability skill;
