@@ -29,6 +29,7 @@ public class GameManager {
         else
             return Piece.PieceColor.WHITE;
     }
+
     public boolean isGameOver() {
         if  ( gameMode == GameMode.ELIMINATION) {
             boolean whiteTeamDead = true;
@@ -81,7 +82,6 @@ public class GameManager {
         //Attaaaaaack
         enemyPiece.changeHP(-(selectedPiece.getAP()));
         endTurn();
-
     }
 
     private void endTurn() {
@@ -90,6 +90,39 @@ public class GameManager {
             //TODO: Create game over thingy
         }
         turn++;
+    }
+
+    private boolean checkPath(int curX, int curY, int tarX, int tarY){
+        Piece p = gameBoard.getPiece(curX, curY);
+        boolean pathClear = true;
+
+        int i = curX;
+        int j = curY;
+
+        if(tarX > curX)
+            i = curX + 1;
+        if(tarX < curX)
+            i = curX - 1;
+        if(tarY > curY)
+            j = curY + 1;
+        if(tarY < curY)
+            j = curY - 1;
+
+       while(i != tarX && j != tarY){
+           if(gameBoard.isOccupied(i, j))
+               pathClear = false;
+
+           if(tarX > curX)
+               i++;
+           if(tarX < curX)
+               i--;
+           if(tarY > curY)
+               j++;
+           if(tarY < curY)
+               j--;
+       }
+
+       return pathClear;
     }
 
 }
