@@ -1,9 +1,14 @@
 package GameEntities.Pieces;
 
-/**
- * Created by Abdullah Wali on 09/12/2016.
- */
+
 public class Queen  extends Piece {
+
+    public Queen( PieceColor color) {
+        this.color = color;
+        this.maxHp = 200;
+        this.hp = maxHp;
+        this.ap = 50;
+    }
 
     @Override
     public boolean isValid(int curX, int curY, int tarX, int tarY) {

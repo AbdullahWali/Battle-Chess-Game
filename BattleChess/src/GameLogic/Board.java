@@ -2,9 +2,7 @@ package GameLogic;
 
 import GameEntities.Pieces.Piece;
 
-/**
 
- */
 public class Board {
     private Piece[][] board;
 

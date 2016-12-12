@@ -3,9 +3,6 @@ package GameLogic;
 import GameEntities.Pieces.King;
 import GameEntities.Pieces.Piece;
 
-/**
-
- */
 public class GameManager {
 
     private enum GameMode {

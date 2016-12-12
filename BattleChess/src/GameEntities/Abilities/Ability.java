@@ -1,8 +1,6 @@
 package GameEntities.Abilities;
 
-/**
 
- */
 public abstract class Ability {
 
     private int cooldown;

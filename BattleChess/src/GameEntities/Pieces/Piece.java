@@ -1,11 +1,6 @@
 package GameEntities.Pieces;
 import GameEntities.Abilities.Ability;
 
-
-
-/**
-
- */
 public abstract class  Piece {
 
 
@@ -13,11 +8,11 @@ public abstract class  Piece {
         WHITE, BLACK
     }
 
-    private int maxHp;
-    private int hp;
-    private int ap;
-    private PieceColor color;
-    private Ability skill;
+    protected int maxHp;
+    protected int hp;
+    protected int ap;
+    protected PieceColor color;
+    protected Ability skill;
 
 
     //Methods

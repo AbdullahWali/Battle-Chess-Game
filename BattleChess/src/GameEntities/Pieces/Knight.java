@@ -1,9 +1,14 @@
 package GameEntities.Pieces;
 
-/**
- * Created by Ege on 11.12.2016.
- */
+
 public class Knight extends Piece {
+
+    public Knight(PieceColor color) {
+        this.color = color;
+        this.maxHp = 125;
+        this.hp = maxHp;
+        this.ap = 50;
+    }
 
     @Override
     public boolean isValid(int curX, int curY, int tarX, int tarY) {
