@@ -30,7 +30,7 @@ public class GameManager {
             return Piece.PieceColor.WHITE;
     }
 
-    public boolean isGameOver() {
+    private boolean isGameOver() {
         if  ( gameMode == GameMode.ELIMINATION) {
             boolean whiteTeamDead = true;
             boolean blackTeamDead = true;
@@ -66,7 +66,14 @@ public class GameManager {
         return false;
     }
 
-    public void move( int curX, int curY, int tarX, int tarY ){
+    public void action(int curX, int curY, int tarX, int tarY){
+        if (gameBoard.getPiece(tarX, tarY) == null)
+            move(curX, curY, tarX, tarY);
+        else
+            attack(curX , curY , tarX ,tarY);
+    }
+
+    private void move( int curX, int curY, int tarX, int tarY ){
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
 
         if (selectedPiece == null)
@@ -79,10 +86,10 @@ public class GameManager {
             return;
 
         gameBoard.movePiece(curX, curY, tarX, tarY);
-        endTurn(); 
+        endTurn();
     }
 
-    public void attack( int curX, int curY, int tarX, int tarY ){
+    private void attack( int curX, int curY, int tarX, int tarY ){
         //Move Validation:
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
         Piece enemyPiece = gameBoard.getPiece(tarX,tarY);

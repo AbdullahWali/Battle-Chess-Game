@@ -15,7 +15,6 @@ public class Pawn extends Piece{
     public boolean isValid(int curX, int curY, int tarX, int tarY) {
         if ( !super.isValid(curX, curY, tarX, tarY))
             return false;
-
         if ( getColor() == PieceColor.WHITE) {
             if (curX == tarX && (tarY - curY ==1))
                 return true;

@@ -3,9 +3,9 @@ package GameEntities.Abilities;
 
 public abstract class Ability {
 
-    private int cooldown;
-    private int cooldownLeft;
-    private String name;
+    protected int cooldown;
+    protected int cooldownLeft;
+    protected String name;
 
 
     //Methods
