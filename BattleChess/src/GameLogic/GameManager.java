@@ -66,6 +66,22 @@ public class GameManager {
         return false;
     }
 
+    public void move( int curX, int curY, int tarX, int tarY ){
+        Piece selectedPiece = gameBoard.getPiece(curX,curY);
+
+        if (selectedPiece == null)
+            return;
+        if (!selectedPiece.isValid(curX,curY,tarX, tarY))
+            return;
+        if (getTurn() != selectedPiece.getColor())
+            return;
+        if(checkPath(curX, curY, tarX, tarY))
+            return;
+
+        gameBoard.movePiece(curX, curY, tarX, tarY);
+        endTurn(); 
+    }
+
     public void attack( int curX, int curY, int tarX, int tarY ){
         //Move Validation:
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
@@ -77,6 +93,8 @@ public class GameManager {
         if (selectedPiece.getColor() == enemyPiece.getColor())
             return;
         if (getTurn() != selectedPiece.getColor())
+            return;
+        if(checkPath(curX, curY, tarX, tarY))
             return;
 
         //Attaaaaaack
