@@ -5,8 +5,6 @@ public class Main {
         System.out.println("Hello World!"); // Display the string.
 
         GameFrame frame = new GameFrame();
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+
     }
 }

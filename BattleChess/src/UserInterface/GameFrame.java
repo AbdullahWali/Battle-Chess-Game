@@ -20,5 +20,8 @@ public class GameFrame extends JFrame {
         boardPanel = new BoardPanel(gameManager.getGameBoard());
 
         getContentPane().add(boardPanel);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
     }
 }
