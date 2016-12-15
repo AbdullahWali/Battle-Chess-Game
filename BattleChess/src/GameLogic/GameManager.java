@@ -1,40 +1,23 @@
 package GameLogic;
-
 import GameEntities.Pieces.King;
 import GameEntities.Pieces.Piece;
 
 public class GameManager {
 
+    private GameMode gameMode;
+    private GameBoard gameBoard;
+    private int turn;
     public enum GameMode {
            ELIMINATION, ASSASSINATION
     }
 
     public GameManager(GameMode gameMode) {
         this.gameMode = gameMode;
-        gameBoard = new Board();
+        gameBoard = new GameBoard();
         turn = 1;
     }
 
-
-    private GameMode gameMode;
-
-    public Board getGameBoard() {
-        return gameBoard;
-    }
-
-    private Board gameBoard;
-    private int turn;
-
-
-
     //Methods
-    public Piece.PieceColor getTurn() {
-        if (turn % 2 == 0)
-            return Piece.PieceColor.BLACK;
-        else
-            return Piece.PieceColor.WHITE;
-    }
-
     private boolean isGameOver() {
         if  ( gameMode == GameMode.ELIMINATION) {
             boolean whiteTeamDead = true;
@@ -65,7 +48,7 @@ public class GameManager {
                     }
                 }
             }
-            return ( whiteKingDead || blackKingDead);
+            return (whiteKingDead || blackKingDead);
         }
         System.err.println("GameMode was not set");
         return false;
@@ -98,6 +81,7 @@ public class GameManager {
         //Move Validation:
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
         Piece enemyPiece = gameBoard.getPiece(tarX,tarY);
+
         if (selectedPiece == null || enemyPiece == null)
             return;
         if (!selectedPiece.isValid(curX,curY,tarX, tarY))
@@ -118,14 +102,13 @@ public class GameManager {
         gameBoard.cleanBoard();
         if (isGameOver()) {
             //TODO: Create game over thingy
+            System.exit(0);
         }
         turn++;
     }
 
     private boolean checkPath(int curX, int curY, int tarX, int tarY){
-        Piece p = gameBoard.getPiece(curX, curY);
         boolean pathClear = true;
-
         int i = curX;
         int j = curY;
 
@@ -155,4 +138,14 @@ public class GameManager {
        return pathClear;
     }
 
+    public Piece.PieceColor getTurn() {
+        if (turn % 2 == 0)
+            return Piece.PieceColor.BLACK;
+        else
+            return Piece.PieceColor.WHITE;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
 }

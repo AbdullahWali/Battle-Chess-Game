@@ -2,11 +2,12 @@ package GameLogic;
 
 import GameEntities.Pieces.*;
 
+public class GameBoard {
 
-public class Board {
     private Piece[][] board;
 
-    public Board() {
+    public GameBoard() {
+
         board = new Piece[8][8];
 
         //Construct White Pieces
@@ -21,7 +22,6 @@ public class Board {
         for (int i = 0 ; i < 8; i++ )
             board[i][1] = new Pawn(Piece.PieceColor.WHITE);
 
-
         //Construct Black Pieces
         board[0][7] = new Rook(Piece.PieceColor.BLACK);
         board[1][7] = new Knight(Piece.PieceColor.BLACK);
@@ -35,21 +35,23 @@ public class Board {
             board[i][6] = new Pawn(Piece.PieceColor.BLACK);
     }
 
-    public boolean isOccupied( int tarX, int tarY) {
-        if (board[tarX][tarY] == null ) return false;
-        else return true;
+    public boolean isOccupied (int tarX, int tarY) {
+        if (board[tarX][tarY] == null)
+            return false;
+        else
+            return true;
     }
 
-    public void removePiece(int tarX, int tarY) {
+    public void removePiece (int tarX, int tarY) {
         //Review: Check if safety constraints needed
         board[tarX][tarY] = null;
     }
 
-    public Piece getPiece(int tarX, int tarY) {
+    public Piece getPiece (int tarX, int tarY) {
         return board[tarX][tarY];
     }
 
-    public void movePiece( int curX, int curY, int tarX, int tarY) {
+    public void movePiece (int curX, int curY, int tarX, int tarY) {
             board[tarX][tarY] = board[curX][curY];
             board[curX][curY] = null;
     }
@@ -62,13 +64,9 @@ public class Board {
                 if (curPiece != null) {
                     if (curPiece.getHP() <= 0)
                         removePiece(i, j);
-                    curPiece.getAbility().updateCooldown();
-
+                    //curPiece.getAbility().updateCooldown();
                 }
             }
         }
     }
-
-
-
 }
