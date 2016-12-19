@@ -1,6 +1,7 @@
 package GameLogic;
 
 import GameEntities.Pieces.*;
+import UserInterface.InfoPanel;
 
 public class GameBoard
 {

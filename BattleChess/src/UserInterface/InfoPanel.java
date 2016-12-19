@@ -1,5 +1,6 @@
 package UserInterface;
 
+import GameEntities.Pieces.Piece;
 import GameLogic.GameManager;
 
 import javax.swing.*;
@@ -9,9 +10,27 @@ import javax.swing.*;
  */
 public class InfoPanel extends JPanel {
 
-    GameManager gameManager;
+    private GameManager gameManager;
+    private JTextArea infoText;
+    private JButton skillButton;
 
     public InfoPanel (GameManager gameManager){
         this.gameManager = gameManager;
+        infoText = new JTextArea();
+        skillButton = new JButton("Use Ability");
+
+        add(infoText);
+        add(skillButton);
+    }
+
+    public void updateInfo(Piece piece)
+    {
+        infoText.setText("Name: " + piece.getClass().getSimpleName() +
+        "\nHP: " + piece.getHP() +
+        "\nAP: " + piece.getAP());
+    }
+
+    public void clearInfo(){
+        infoText.setText("");
     }
 }

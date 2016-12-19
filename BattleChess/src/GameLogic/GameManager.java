@@ -95,31 +95,26 @@ public class GameManager
     {
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
 
-        System.out.println("in");
         if (selectedPiece == null)
         {
-            System.err.println("1");
+            System.err.println("Error Move: null");
             return;
         }
         if (!selectedPiece.isValid(curX,curY,tarX, tarY)) {
-            System.err.println("2");
+            System.err.println("Error Move: not valid");
             return;
         }
         if (getTurn() != selectedPiece.getColor()) {
-            System.err.println("3");
+            System.err.println("Error Move: wrong color");
             return;
         }
         if(!checkPath(curX, curY, tarX, tarY)) {
-            System.err.println("4");
+            System.err.println("Error Move: path blocked");
             return;
         }
-        System.err.println("ouot");
-
 
         gameBoard.movePiece(curX, curY, tarX, tarY);
         endTurn();
-
-        System.out.println("moved");
     }
 
     private void attack( int curX, int curY, int tarX, int tarY )
@@ -130,26 +125,30 @@ public class GameManager
 
         if (selectedPiece == null || enemyPiece == null)
         {
+            System.err.println("Error Attack: null");
             return;
         }
         if (!selectedPiece.isValid(curX,curY,tarX, tarY))
         {
+            System.err.println("Error Attack: not valid");
             return;
         }
         if (selectedPiece.getColor() == enemyPiece.getColor())
         {
+            System.err.println("Error Attack: friendly");
             return;
         }
         if (getTurn() != selectedPiece.getColor())
         {
+            System.err.println("Error Attack: wrong color");
             return;
         }
-        if(checkPath(curX, curY, tarX, tarY))
+        if(!checkPath(curX, curY, tarX, tarY))
         {
+            System.err.println("Error Attack: path blocked");
             return;
         }
 
-        //Attaaaaaack
         enemyPiece.changeHP(-(selectedPiece.getAP()));
         endTurn();
     }

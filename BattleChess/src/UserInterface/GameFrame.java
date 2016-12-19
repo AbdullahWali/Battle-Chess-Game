@@ -19,13 +19,13 @@ public class GameFrame extends JFrame {
     public GameFrame(){
         super();
 
-        gameManager = new GameManager(GameManager.GameMode.ELIMINATION);
-        boardPanel = new BoardPanel(gameManager);
+        gameManager = new GameManager(GameManager.GameMode.ASSASSINATION);
         infoPanel = new InfoPanel(gameManager);
+        boardPanel = new BoardPanel(gameManager, infoPanel);
 
         setLayout(new GridLayout());
         getContentPane().add(boardPanel);
-        getContentPane().add(boardPanel);
+        getContentPane().add(infoPanel);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();

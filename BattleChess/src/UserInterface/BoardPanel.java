@@ -16,14 +16,17 @@ public class BoardPanel extends JPanel {
 
     PieceButton[][] pieceArray;
     GameManager gameManager;
+    InfoPanel infoPanel;
 
     Point selected;
 
-    public BoardPanel(GameManager gameManager){
+    public BoardPanel(GameManager gameManager, InfoPanel infoPanel){
         super();
 
         this.gameManager = gameManager;
+        this.infoPanel = infoPanel;
         pieceArray = new PieceButton[8][8];
+
         setLayout(new GridLayout(8,8));
 
         for(int i = 0; i < 8; i++){
@@ -60,11 +63,18 @@ public class BoardPanel extends JPanel {
 
                 if(selected != null) {
                     gameManager.action(selected.x, selected.y, curX, curY);
-                }
-                if(piece != null)
-                    selected = new Point(curX, curY);
-                else
                     selected = null;
+                    infoPanel.clearInfo();
+                }
+                else if(piece != null) {
+                    selected = new Point(curX, curY);
+                    infoPanel.updateInfo(piece);
+                }
+                else
+                {
+                    infoPanel.clearInfo();
+                    selected = null;
+                }
 
                 consoleDraw();
                 reDraw();
