@@ -17,7 +17,7 @@ public class Rook extends Piece
         {
             return false;
         }
-        if (curX == tarX || curY == curY)
+        if (curX == tarX || curY == tarY)
         {
             return true;
         }

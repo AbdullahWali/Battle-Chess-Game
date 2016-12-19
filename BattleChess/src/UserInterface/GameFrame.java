@@ -24,6 +24,8 @@ public class GameFrame extends JFrame {
         boardPanel = new BoardPanel(gameManager, infoPanel);
 
         setLayout(new GridLayout());
+        setPreferredSize(new Dimension(900,900));
+        setResizable(false);
         getContentPane().add(boardPanel);
         getContentPane().add(infoPanel);
 

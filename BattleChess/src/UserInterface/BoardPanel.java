@@ -5,8 +5,7 @@ import GameLogic.GameManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * Created by Ege on 12.12.2016.
@@ -28,15 +27,17 @@ public class BoardPanel extends JPanel {
         pieceArray = new PieceButton[8][8];
 
         setLayout(new GridLayout(8,8));
+        setPreferredSize(new Dimension(800,800));
+
 
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++) {
                 pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j));
 
                 if(gameManager.getGameBoard().getPiece(i,j) != null)
-                    pieceArray[i][j].setText(pieceArray[i][j].curX + " " + pieceArray[i][j].curY);
+                    pieceArray[i][j].setText(pieceArray[i][j].piece.getColor() + pieceArray[i][j].piece.getClass().getSimpleName());
                 else
-                    pieceArray[i][j].setText(".");
+                    pieceArray[i][j].setText("");
 
                 add(pieceArray[i][j]);
             }
@@ -64,16 +65,17 @@ public class BoardPanel extends JPanel {
                 if(selected != null) {
                     gameManager.action(selected.x, selected.y, curX, curY);
                     selected = null;
-                    infoPanel.clearInfo();
                 }
-                else if(piece != null) {
+
+                if(piece != null) {
                     selected = new Point(curX, curY);
                     infoPanel.updateInfo(piece);
+                    highlight(curX, curY, piece);
                 }
                 else
                 {
-                    infoPanel.clearInfo();
                     selected = null;
+                    infoPanel.clearInfo();
                 }
 
                 consoleDraw();
@@ -91,9 +93,13 @@ public class BoardPanel extends JPanel {
                 pieceArray[i][j].piece = gameManager.getGameBoard().getPiece(i,j);
 
                 if(pieceArray[i][j].piece != null)
+                {
                     pieceArray[i][j].setText(pieceArray[i][j].piece.getColor() + pieceArray[i][j].piece.getClass().getSimpleName());
+                }
                 else
-                    pieceArray[i][j].setText(".");
+                {
+                    pieceArray[i][j].setText("");
+                }
             }
         }
     }
@@ -104,9 +110,19 @@ public class BoardPanel extends JPanel {
                 if(pieceArray[i][j].piece != null)
                     System.out.print (pieceArray[i][j].piece.getClass().getSimpleName() + "\t");
                 else
-                    System.out.print(".\t");
+                    System.out.print(".....\t");
             }
             System.out.print("\n");
+        }
+    }
+
+    private void highlight(int curX, int curY, Piece piece){
+        for(int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                if(piece.isValid(curX, curY, i, j)){
+                    pieceArray[i][j].setBackground(Color.GREEN);
+                }
+            }
         }
     }
 }

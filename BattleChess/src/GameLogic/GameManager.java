@@ -166,10 +166,8 @@ public class GameManager
 
     private boolean checkPath(int curX, int curY, int tarX, int tarY)
     {
-        if(gameBoard.getPiece(curX, curY).getClass().getSimpleName().equals("Knight"))
-        {
+        if(gameBoard.getPiece(curX, curY).getClass().getSimpleName().contains("night"))
             return true;
-        }
 
         boolean pathClear = true;
         int i = curX;
@@ -180,7 +178,7 @@ public class GameManager
         if(tarY > curY) j = curY + 1;
         if(tarY < curY) j = curY - 1;
 
-       while(i != tarX && j != tarY)
+       while(i != tarX || j != tarY)
        {
            if(gameBoard.isOccupied(i, j))
            {
