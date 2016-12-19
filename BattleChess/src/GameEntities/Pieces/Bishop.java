@@ -1,5 +1,7 @@
 package GameEntities.Pieces;
 
+import GameEntities.Abilities.Prayer;
+
 public class Bishop extends Piece {
 
     public Bishop (PieceColor color) {
@@ -7,6 +9,7 @@ public class Bishop extends Piece {
         this.maxHp = 100;
         this.hp = maxHp;
         this.ap = 20;
+        this.skill = new Prayer();
     }
 
     @Override
