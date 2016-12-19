@@ -24,7 +24,7 @@ public class Barrage extends Ability{
         int curY = coordinates[1];
         int tarX = coordinates[2];
         int tarY = coordinates[3];
-        Piece.PieceColor curColour = board.getPiece(curX,curY).getColor();
+        int curColour = board.getPiece(curX,curY).getColor();
 
         //Check that nothing obstructs the attack
         if (!board.getPiece(curX,curY).isValid(curX,curY,tarX,tarY))

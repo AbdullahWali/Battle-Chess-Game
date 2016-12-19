@@ -21,7 +21,7 @@ public class Prayer extends Ability {
         if (coordinates.length < 2 ) return false;
         int curX = coordinates[0];
         int curY = coordinates[1];
-        Piece.PieceColor curColour = board.getPiece(curX,curY).getColor();
+        int curColour = board.getPiece(curX,curY).getColor();
 
         //Checks for valid cooldown and resets if valid
         if (!super.useAbility(board,coordinates)) return false;

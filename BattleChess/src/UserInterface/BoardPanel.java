@@ -60,14 +60,17 @@ public class BoardPanel extends JPanel {
 
                 if(selected != null) {
                     gameManager.action(selected.x, selected.y, curX, curY);
-                    consoleDraw();
                 }
                 if(piece != null)
                     selected = new Point(curX, curY);
                 else
                     selected = null;
 
+                consoleDraw();
                 reDraw();
+
+                validate();
+                repaint();
             }
         }
     }
@@ -76,10 +79,13 @@ public class BoardPanel extends JPanel {
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++) {
                 pieceArray[i][j].piece = gameManager.getGameBoard().getPiece(i,j);
+
+                if(pieceArray[i][j].piece != null)
+                    pieceArray[i][j].setText(pieceArray[i][j].piece.getColor() + pieceArray[i][j].piece.getClass().getSimpleName());
+                else
+                    pieceArray[i][j].setText(".");
             }
         }
-
-        repaint();
     }
 
     private void consoleDraw() {
@@ -93,5 +99,4 @@ public class BoardPanel extends JPanel {
             System.out.print("\n");
         }
     }
-
 }

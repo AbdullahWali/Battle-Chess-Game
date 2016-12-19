@@ -1,8 +1,9 @@
 package GameEntities.Pieces;
 
-public class Pawn extends Piece {
-
-    public Pawn (PieceColor color) {
+public class Pawn extends Piece
+{
+    public Pawn (int color)
+    {
         this.color = color;
         this.maxHp = 50;
         this.hp = maxHp;
@@ -10,23 +11,26 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValid (int curX, int curY, int tarX, int tarY) {
+    public boolean isValid (int curX, int curY, int tarX, int tarY)
+    {
         if (!super.isValid(curX, curY, tarX, tarY))
+        {
             return false;
-        if (getColor().equals(PieceColor.WHITE)) {
-            if (curX == tarX && (tarY - curY ==1))
-                return true;
-            if ((Math.abs(tarX-curX) == 1) && (tarY-curY)==1)
-                return true;
         }
-        if (getColor().equals(PieceColor.BLACK)) {
-            if (curX == tarX && (curY - tarY ==1))
+        if (getColor() == 1)
+        {
+            if ((Math.abs(curY - tarY) <= 1) && (curX - tarX)==1)
+            {
                 return true;
-            if ( (Math.abs(tarX-curX) == 1) && (curY-tarY)==1)
-                return true;
+            }
         }
-        System.out.println("none of them");
-
+        if (getColor() == 0)
+        {
+            if ((Math.abs(curY - tarY) <= 1) && (tarX - curX)==1)
+            {
+                return true;
+            }
+        }
         return false;
     }
 }
