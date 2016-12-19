@@ -55,26 +55,48 @@ public class GameManager {
     }
 
     public void action(int curX, int curY, int tarX, int tarY){
-        if (gameBoard.getPiece(tarX, tarY) == null)
+        if (gameBoard.getPiece(tarX, tarY) == null) {
             move(curX, curY, tarX, tarY);
-        else
-            attack(curX , curY , tarX ,tarY);
+            System.out.println("move");
+        }
+        else {
+            attack(curX, curY, tarX, tarY);
+            System.out.println("attack");
+        }
     }
 
     private void move( int curX, int curY, int tarX, int tarY ){
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
 
-        if (selectedPiece == null)
+        System.out.println("in");
+
+        if (selectedPiece == null) {
+            System.out.println("1");
+
             return;
-        if (!selectedPiece.isValid(curX,curY,tarX, tarY))
+        }
+        if (!selectedPiece.isValid(curX,curY,tarX, tarY)) {
+            System.out.println("2");
+
             return;
-        if (getTurn() != selectedPiece.getColor())
+        }
+        if (getTurn() != selectedPiece.getColor()) {
+            System.out.println("3");
+
             return;
-        if(checkPath(curX, curY, tarX, tarY))
+        }
+        if(checkPath(curX, curY, tarX, tarY)) {
+            System.out.println("4");
+
             return;
+        }
+        System.out.println("ouot");
+
 
         gameBoard.movePiece(curX, curY, tarX, tarY);
         endTurn();
+
+        System.out.println("moved");
     }
 
     private void attack( int curX, int curY, int tarX, int tarY ){

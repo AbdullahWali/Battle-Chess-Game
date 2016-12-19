@@ -12,9 +12,6 @@ public class InfoPanel extends JPanel {
     GameManager gameManager;
 
     public InfoPanel (GameManager gameManager){
-
         this.gameManager = gameManager;
     }
-
-
 }

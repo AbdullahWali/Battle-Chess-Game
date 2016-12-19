@@ -17,9 +17,7 @@ public class BoardPanel extends JPanel {
     PieceButton[][] pieceArray;
     GameManager gameManager;
 
-    Point selectedCurrent;
-    Piece selectedTarget;
-
+    Point selected;
 
     public BoardPanel(GameManager gameManager){
         super();
@@ -28,17 +26,16 @@ public class BoardPanel extends JPanel {
         pieceArray = new PieceButton[8][8];
         setLayout(new GridLayout(8,8));
 
-        for(int j = 7; j >= 0; j--){
-            for(int i = 0; i < 8; i++) {
-                pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j));
-                add(pieceArray[i][j]);
-            }
-        }
-
         for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
+            for(int j = 0; j < 8; j++) {
+                pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j));
+
                 if(gameManager.getGameBoard().getPiece(i,j) != null)
                     pieceArray[i][j].setText(pieceArray[i][j].curX + " " + pieceArray[i][j].curY);
+                else
+                    pieceArray[i][j].setText(".");
+
+                add(pieceArray[i][j]);
             }
         }
     }
@@ -54,47 +51,47 @@ public class BoardPanel extends JPanel {
             this.piece = piece;
 
             addActionListener(new ButtonListener());
-
         }
 
         public class ButtonListener implements ActionListener{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(selectedCurrent != null){
-                    gameManager.action(selectedCurrent.x, selectedCurrent.y, curX, curY);
-                }
-                else
-                    selectedCurrent = new Point(curX, curY);
 
-                redraw();
+                if(selected != null) {
+                    gameManager.action(selected.x, selected.y, curX, curY);
+                    consoleDraw();
+                }
+                if(piece != null)
+                    selected = new Point(curX, curY);
+                else
+                    selected = null;
+
+                reDraw();
             }
         }
     }
 
-    private void redraw(){
-        for(int j = 7; j >= 0; j--){
-            for(int i = 0; i < 8; i++) {
+    private void reDraw(){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++) {
                 pieceArray[i][j].piece = gameManager.getGameBoard().getPiece(i,j);
             }
         }
 
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                if(gameManager.getGameBoard().getPiece(i,j) != null)
-                    pieceArray[i][j].setText(pieceArray[i][j].curX + " " + pieceArray[i][j].curY);
-            }
-        }
-
-        for(int j = 7; j >= 0; j--){
-            for(int i = 0; i < 8; i++) {
-                pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j));
-            }
-        }
-
-
         repaint();
     }
 
+    private void consoleDraw() {
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++) {
+                if(pieceArray[i][j].piece != null)
+                    System.out.print (pieceArray[i][j].piece.getClass().getSimpleName() + "\t");
+                else
+                    System.out.print(".\t");
+            }
+            System.out.print("\n");
+        }
+    }
 
 }

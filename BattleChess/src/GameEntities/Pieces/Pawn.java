@@ -13,18 +13,20 @@ public class Pawn extends Piece {
     public boolean isValid (int curX, int curY, int tarX, int tarY) {
         if (!super.isValid(curX, curY, tarX, tarY))
             return false;
-        if (getColor() == PieceColor.WHITE) {
+        if (getColor().equals(PieceColor.WHITE)) {
             if (curX == tarX && (tarY - curY ==1))
                 return true;
             if ((Math.abs(tarX-curX) == 1) && (tarY-curY)==1)
                 return true;
         }
-        if (getColor() == PieceColor.BLACK) {
+        if (getColor().equals(PieceColor.BLACK)) {
             if (curX == tarX && (curY - tarY ==1))
                 return true;
             if ( (Math.abs(tarX-curX) == 1) && (curY-tarY)==1)
                 return true;
         }
+        System.out.println("none of them");
+
         return false;
     }
 }
