@@ -1,6 +1,8 @@
 package GameEntities.Pieces;
 
 
+import GameEntities.Abilities.Whirlwind;
+
 public class Knight extends Piece {
 
     public Knight (PieceColor color) {
@@ -8,6 +10,7 @@ public class Knight extends Piece {
         this.maxHp = 125;
         this.hp = maxHp;
         this.ap = 50;
+        this.skill = new Whirlwind();
     }
 
     @Override

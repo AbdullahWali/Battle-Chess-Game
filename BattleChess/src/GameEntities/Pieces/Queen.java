@@ -1,5 +1,7 @@
 package GameEntities.Pieces;
 
+import GameEntities.Abilities.Barrage;
+
 public class Queen  extends Piece {
 
     public Queen (PieceColor color) {
@@ -7,6 +9,7 @@ public class Queen  extends Piece {
         this.maxHp = 200;
         this.hp = maxHp;
         this.ap = 50;
+        this.skill = new Barrage();
     }
 
     @Override

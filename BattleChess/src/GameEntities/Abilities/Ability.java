@@ -1,8 +1,10 @@
 package GameEntities.Abilities;
-
+import GameLogic.GameBoard;
 
 public abstract class Ability {
 
+    protected boolean isPassive;
+    protected boolean isTargeted; //User Needs to click on a target to use ability
     protected int cooldown;
     protected int cooldownLeft;
     protected String name;
@@ -12,7 +14,7 @@ public abstract class Ability {
     public String getName() {
         return name;
     }
-
+    public boolean isPassive() { return isPassive;}
     public void updateCooldown(){
         if (cooldownLeft > 0)
             cooldownLeft--;
@@ -30,7 +32,7 @@ public abstract class Ability {
 
 
     //Will be overloaded
-    public boolean useAbility() {
+    public boolean useAbility( GameBoard board, int... coordinates) {
         if (cooldownLeft != 0) {
             return false;
         }
