@@ -29,10 +29,12 @@ public class BoardPanel extends JPanel {
         setLayout(new GridLayout(8,8));
         setPreferredSize(new Dimension(800,800));
 
-
+        int index = 0; //For Color Distribtuion
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++) {
-                pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j));
+                Color color = index % 2 == 0 ? Color.BLACK : Color.WHITE;
+                pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j), color);
+                index++;
 
                 if(gameManager.getGameBoard().getPiece(i,j) != null)
                     pieceArray[i][j].setText(pieceArray[i][j].piece.getColor() + pieceArray[i][j].piece.getClass().getSimpleName());
@@ -41,6 +43,7 @@ public class BoardPanel extends JPanel {
 
                 add(pieceArray[i][j]);
             }
+            index++;
         }
     }
 
@@ -49,12 +52,14 @@ public class BoardPanel extends JPanel {
         protected int curX, curY;
         protected Piece piece;
 
-        public PieceButton(int curX, int curY, Piece piece){
+        public PieceButton(int curX, int curY, Piece piece, Color color){
             this.curX = curX;
             this.curY = curY;
             this.piece = piece;
-
+            setBackground(color);
             addActionListener(new ButtonListener());
+            addActionListener(infoPanel);
+            
         }
 
         public class ButtonListener implements ActionListener{
@@ -62,14 +67,14 @@ public class BoardPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(selected != null) {
+                if(selected != null && !infoPanel.targetSkillActivated) {
                     gameManager.action(selected.x, selected.y, curX, curY);
                     selected = null;
                 }
 
                 if(piece != null) {
                     selected = new Point(curX, curY);
-                    infoPanel.updateInfo(piece);
+                    infoPanel.updateInfo(piece, curX, curY);
                     highlight(curX, curY, piece);
                 }
                 else

@@ -1,6 +1,9 @@
 package GameLogic;
 import GameEntities.Pieces.King;
+import GameEntities.Pieces.Knight;
 import GameEntities.Pieces.Piece;
+
+import java.awt.*;
 
 public class GameManager
 {
@@ -166,7 +169,7 @@ public class GameManager
 
     private boolean checkPath(int curX, int curY, int tarX, int tarY)
     {
-        if(gameBoard.getPiece(curX, curY).getClass().getSimpleName().contains("night"))
+        if(gameBoard.getPiece(curX, curY) instanceof Knight)
             return true;
 
         boolean pathClear = true;

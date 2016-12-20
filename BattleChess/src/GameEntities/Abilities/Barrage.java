@@ -42,6 +42,7 @@ public class Barrage extends Ability{
                     piece.changeHP(-20);
             }
         }
+        System.out.println("Ability was used: Barrage");
         return true;
     }
 

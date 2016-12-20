@@ -60,7 +60,12 @@ public class GameBoard
 
     public Piece getPiece (int tarX, int tarY)
     {
-        return board[tarX][tarY];
+        if (tarX < 0 || tarX >7  || tarY < 0 || tarY > 7 ) {
+            return null;
+        }
+        else {
+            return board[tarX][tarY];
+        }
     }
 
     public void movePiece (int curX, int curY, int tarX, int tarY)

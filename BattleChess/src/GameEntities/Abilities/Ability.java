@@ -15,6 +15,7 @@ public abstract class Ability {
         return name;
     }
     public boolean isPassive() { return isPassive;}
+    public boolean isTargeted() {return  isTargeted;}
     public void updateCooldown(){
         if (cooldownLeft > 0)
             cooldownLeft--;
