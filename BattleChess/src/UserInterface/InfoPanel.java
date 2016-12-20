@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Ege on 15.12.2016.
  */
-public class InfoPanel extends JPanel implements ActionListener {
+public class InfoPanel extends JPanel {
 
     private GameManager gameManager;
     private JTextArea infoText;
@@ -80,19 +80,4 @@ public class InfoPanel extends JPanel implements ActionListener {
     }
 
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        BoardPanel.PieceButton source =  ( BoardPanel.PieceButton) e.getSource();
-
-        //If Ability button was clicked, attack target
-        if (targetSkillActivated && (source.curX != curX || source.curY != curY)) {
-            tarX = source.curX;
-            tarY = source.curY;
-            piece.getAbility().useAbility(gameManager.getGameBoard(), curX, curY, tarX, tarY );
-        }
-
-        //Reset The Ability Click
-        targetSkillActivated = false;
-
-    }
 }

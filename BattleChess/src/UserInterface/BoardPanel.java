@@ -16,12 +16,13 @@ public class BoardPanel extends JPanel {
     PieceButton[][] pieceArray;
     GameManager gameManager;
     InfoPanel infoPanel;
-
+    GameFrame frame;
     Point selected;
 
-    public BoardPanel(GameManager gameManager, InfoPanel infoPanel){
+    public BoardPanel(GameManager gameManager, InfoPanel infoPanel, GameFrame frame){
         super();
 
+        this.frame = frame;
         this.gameManager = gameManager;
         this.infoPanel = infoPanel;
         pieceArray = new PieceButton[8][8];
@@ -57,42 +58,13 @@ public class BoardPanel extends JPanel {
             this.curY = curY;
             this.piece = piece;
             setBackground(color);
-            addActionListener(new ButtonListener());
-            addActionListener(infoPanel);
-            
-        }
+            addActionListener(frame);
 
-        public class ButtonListener implements ActionListener{
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                if(selected != null && !infoPanel.targetSkillActivated) {
-                    gameManager.action(selected.x, selected.y, curX, curY);
-                    selected = null;
-                }
-
-                if(piece != null) {
-                    selected = new Point(curX, curY);
-                    infoPanel.updateInfo(piece, curX, curY);
-                    highlight(curX, curY, piece);
-                }
-                else
-                {
-                    selected = null;
-                    infoPanel.clearInfo();
-                }
-
-                consoleDraw();
-                reDraw();
-
-                validate();
-                repaint();
-            }
         }
     }
 
-    private void reDraw(){
+    public void reDraw(){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++) {
                 pieceArray[i][j].piece = gameManager.getGameBoard().getPiece(i,j);
@@ -109,7 +81,7 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    private void consoleDraw() {
+    public void consoleDraw() {
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++) {
                 if(pieceArray[i][j].piece != null)
@@ -121,7 +93,7 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    private void highlight(int curX, int curY, Piece piece){
+    public void highlight(int curX, int curY, Piece piece){
         for(int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
                 if(piece.isValid(curX, curY, i, j)){
