@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Ege on 15.12.2016.
+ * Created by Ege & Wali on 15.12.2016.
  */
 public class InfoPanel extends JPanel {
 

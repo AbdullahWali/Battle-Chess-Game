@@ -4,7 +4,7 @@ import GameEntities.Pieces.Piece;
 import GameLogic.GameBoard;
 
 /**
- * Created by Abdullah Wali on 19/12/2016.
+ * Created by Ege & Wali on 19/12/2016.
  */
 public class Prayer extends Ability {
 

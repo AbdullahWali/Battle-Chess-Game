@@ -1,6 +1,6 @@
 package UserInterface;
 
-import GameEntities.Pieces.Piece;
+import GameEntities.Pieces.*;
 import GameLogic.GameManager;
 
 import javax.swing.*;
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Created by Ege on 12.12.2016.
+ * Created by Ege & Wali on 12.12.2016.
  */
 public class BoardPanel extends JPanel {
 
@@ -36,7 +36,7 @@ public class BoardPanel extends JPanel {
                 pieceArray[i][j] = new PieceButton(i,j, gameManager.getGameBoard().getPiece(i,j));
 
                 if(gameManager.getGameBoard().getPiece(i,j) != null)
-                    pieceArray[i][j].setText(pieceArray[i][j].piece.getClass().getSimpleName());
+                    pieceArray[i][j].setIcon(getPieceIcon(pieceArray[i][j].piece));
                 else
                     pieceArray[i][j].setText("");
 
@@ -65,12 +65,14 @@ public class BoardPanel extends JPanel {
             for(int j = 0; j < 8; j++) {
                 pieceArray[i][j].piece = gameManager.getGameBoard().getPiece(i,j);
 
+
                 if(pieceArray[i][j].piece != null)
                 {
-                    pieceArray[i][j].setText(pieceArray[i][j].piece.getClass().getSimpleName());
+                    pieceArray[i][j].setIcon(getPieceIcon(pieceArray[i][j].piece));
                 }
                 else
                 {
+                    pieceArray[i][j].setIcon(null);
                     pieceArray[i][j].setText("");
                 }
             }
@@ -89,6 +91,33 @@ public class BoardPanel extends JPanel {
             }
             System.out.print("\n");
         }
+    }
+
+    private  ImageIcon getPieceIcon( Piece p){
+        if (p == null ) {
+            return null;
+        }
+        ImageIcon icon = null;
+        //Whites
+        if (p instanceof King && p.getColor() == 1) icon = new ImageIcon(this.getClass().getResource("/assets/wk.png"));
+        if (p instanceof Queen && p.getColor() == 1) icon = new ImageIcon(this.getClass().getResource("/assets/wq.png"));
+        if (p instanceof Knight && p.getColor() == 1) icon = new ImageIcon(this.getClass().getResource("/assets/wn.png"));
+        if (p instanceof Rook && p.getColor() == 1) icon = new ImageIcon(this.getClass().getResource("/assets/wr.png"));
+        if (p instanceof Bishop && p.getColor() == 1) icon = new ImageIcon(this.getClass().getResource("/assets/wb.png"));
+        if (p instanceof Pawn && p.getColor() == 1) icon = new ImageIcon(this.getClass().getResource("/assets/wp.png"));
+
+        //Black
+        if (p instanceof King && p.getColor() == 0) icon = new ImageIcon(this.getClass().getResource("/assets/bk.png"));
+        if (p instanceof Queen && p.getColor() == 0) icon = new ImageIcon(this.getClass().getResource("/assets/bq.png"));
+        if (p instanceof Knight && p.getColor() == 0) icon = new ImageIcon(this.getClass().getResource("/assets/bn.png"));
+        if (p instanceof Rook && p.getColor() == 0) icon = new ImageIcon(this.getClass().getResource("/assets/br.png"));
+        if (p instanceof Bishop && p.getColor() == 0) icon = new ImageIcon(this.getClass().getResource("/assets/bb.png"));
+        if (p instanceof Pawn && p.getColor() == 0) icon = new ImageIcon(this.getClass().getResource("/assets/bp.png"));
+
+        Image img = icon.getImage() ;
+        Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
+        icon = new ImageIcon( newimg );
+        return icon;
     }
 
     public void highlight(int curX, int curY, Piece piece){

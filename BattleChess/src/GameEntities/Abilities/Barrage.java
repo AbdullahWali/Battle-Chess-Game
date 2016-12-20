@@ -5,7 +5,7 @@ import GameLogic.GameBoard;
 import GameLogic.GameManager;
 
 /**
- * Created by Abdullah Wali on 19/12/2016.
+ * Created by Ege & Wali on 19/12/2016.
  */
 public class Barrage extends Ability{
 

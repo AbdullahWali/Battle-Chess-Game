@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Ege on 12.12.2016.
+ * Created by Ege & Wali on 12.12.2016.
  */
 public class GameFrame extends JFrame implements ActionListener{
 
@@ -76,7 +76,7 @@ public class GameFrame extends JFrame implements ActionListener{
         boardPanel = new BoardPanel(gameManager, infoPanel, this);
 
         setLayout(new GridLayout(2,1));
-        setPreferredSize(new Dimension(900,900));
+        setPreferredSize(new Dimension(700,700));
         setResizable(false);
 
         elimination = new JButton("Elimination");
