@@ -82,13 +82,11 @@ public class GameManager
 
     public void action(int curX, int curY, int tarX, int tarY)
     {
-        if (gameBoard.getPiece(tarX, tarY) == null)
-        {
+        if (gameBoard.getPiece(tarX, tarY) == null) {
             move(curX, curY, tarX, tarY);
             System.out.println("move");
         }
-        else
-        {
+        else {
             attack(curX, curY, tarX, tarY);
             System.out.println("attack");
         }
@@ -98,8 +96,7 @@ public class GameManager
     {
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
 
-        if (selectedPiece == null)
-        {
+        if (selectedPiece == null) {
             System.err.println("Error Move: null");
             return;
         }
@@ -126,28 +123,23 @@ public class GameManager
         Piece selectedPiece = gameBoard.getPiece(curX,curY);
         Piece enemyPiece = gameBoard.getPiece(tarX,tarY);
 
-        if (selectedPiece == null || enemyPiece == null)
-        {
+        if (selectedPiece == null || enemyPiece == null) {
             System.err.println("Error Attack: null");
             return;
         }
-        if (!selectedPiece.isValid(curX,curY,tarX, tarY))
-        {
+        if (!selectedPiece.isValid(curX,curY,tarX, tarY)) {
             System.err.println("Error Attack: not valid");
             return;
         }
-        if (selectedPiece.getColor() == enemyPiece.getColor())
-        {
+        if (selectedPiece.getColor() == enemyPiece.getColor()) {
             System.err.println("Error Attack: friendly");
             return;
         }
-        if (getTurn() != selectedPiece.getColor())
-        {
+        if (getTurn() != selectedPiece.getColor()) {
             System.err.println("Error Attack: wrong color");
             return;
         }
-        if(!checkPath(curX, curY, tarX, tarY))
-        {
+        if(!checkPath(curX, curY, tarX, tarY)) {
             System.err.println("Error Attack: path blocked");
             return;
         }
@@ -167,7 +159,7 @@ public class GameManager
         turn++;
     }
 
-    private boolean checkPath(int curX, int curY, int tarX, int tarY)
+    public boolean checkPath(int curX, int curY, int tarX, int tarY)
     {
         if(gameBoard.getPiece(curX, curY) instanceof Knight)
             return true;
@@ -193,7 +185,6 @@ public class GameManager
            if(tarY > curY) j++;
            if(tarY < curY) j--;
        }
-
        return pathClear;
     }
 

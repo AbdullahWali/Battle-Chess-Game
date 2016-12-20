@@ -21,7 +21,7 @@ public class InfoPanel extends JPanel {
     int curX, curY, tarX, tarY;
     boolean targetSkillActivated;
 
-    public InfoPanel (GameManager gameManager){
+    public InfoPanel (GameManager gameManager, BoardPanel boardPanel){
         this.gameManager = gameManager;
         infoText = new JTextArea();
         skillButton = new JButton("Use Ability");
@@ -43,6 +43,7 @@ public class InfoPanel extends JPanel {
                     }
                     else if (ability.isTargeted() && !targetSkillActivated) {
                         targetSkillActivated = true;
+                        boardPanel.skillHighlight(curX, curY, piece);
                     }
                 }
             }
@@ -73,7 +74,6 @@ public class InfoPanel extends JPanel {
 
     public void clearInfo(){
         piece = null;
-
         infoText.setText("");
         infoText.setVisible(false);
         skillButton.setVisible(false);

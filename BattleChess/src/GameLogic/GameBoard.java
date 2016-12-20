@@ -1,7 +1,6 @@
 package GameLogic;
 
 import GameEntities.Pieces.*;
-import UserInterface.InfoPanel;
 
 public class GameBoard
 {
@@ -20,8 +19,7 @@ public class GameBoard
         board[7][5] = new Bishop(1);
         board[7][6] = new Knight(1);
         board[7][7] = new Rook(1);
-        for (int i = 0 ; i < 8; i++ )
-        {
+        for (int i = 0 ; i < 8; i++ ) {
             board[6][i] = new Pawn(1);
         }
 
@@ -34,27 +32,23 @@ public class GameBoard
         board[0][5] = new Bishop(0);
         board[0][6] = new Knight(0);
         board[0][7] = new Rook(0);
-        for (int i = 0 ; i < 8; i++ )
-        {
+        for (int i = 0 ; i < 8; i++ ) {
             board[1][i] = new Pawn(0);
         }
     }
 
     public boolean isOccupied (int tarX, int tarY)
     {
-        if (board[tarX][tarY] == null)
-        {
+        if (board[tarX][tarY] == null) {
             return false;
         }
-        else
-        {
+        else {
             return true;
         }
     }
 
     public void removePiece (int tarX, int tarY)
     {
-        //Review: Check if safety constraints needed
         board[tarX][tarY] = null;
     }
 
@@ -75,18 +69,15 @@ public class GameBoard
     }
 
     public void cleanBoard() {
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 Piece curPiece = getPiece(i, j);
-
-                if (curPiece != null)
-                {
-                    //curPiece.getAbility().updateCooldown();
-                    if (curPiece.getHP() <= 0)
-                    {
+                if (curPiece != null) {
+                    if (curPiece.getHP() <= 0) {
                         removePiece(i, j);
+                    }
+                    else{
+                        //curPiece.getAbility().updateCooldown();
                     }
                 }
             }
