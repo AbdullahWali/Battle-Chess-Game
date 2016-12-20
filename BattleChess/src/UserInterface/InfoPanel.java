@@ -3,6 +3,7 @@ package UserInterface;
 import GameEntities.Abilities.Ability;
 import GameEntities.Pieces.Piece;
 import GameLogic.GameManager;
+import com.sun.deploy.panel.JSmartTextArea;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ public class InfoPanel extends JPanel {
 
     private GameManager gameManager;
     private JTextArea infoText;
+    public JTextArea hoverText;
     private JButton skillButton;
     private Piece piece;
     int curX, curY, tarX, tarY;
@@ -24,6 +26,7 @@ public class InfoPanel extends JPanel {
     public InfoPanel (GameManager gameManager, BoardPanel boardPanel){
         this.gameManager = gameManager;
         infoText = new JTextArea();
+        hoverText = new JTextArea();
         skillButton = new JButton("Use Ability");
         tarX = -1;
         tarY = -1;
@@ -49,14 +52,30 @@ public class InfoPanel extends JPanel {
             }
         });
 
-        setLayout(new GridLayout(2, 1));
+        setLayout(new GridLayout(3, 1));
         setPreferredSize(new Dimension(100, 800));
 
         add(infoText);
+        add(hoverText);
         add(skillButton);
     }
 
 
+    public void updateHover(Piece piece){
+
+        hoverText.setText("asd");
+
+        if(piece != null) {
+            hoverText.setText("Name: " + piece.getClass().getSimpleName() +
+                    "\nHP: " + piece.getHP() +
+                    "\nAP: " + piece.getAP());
+            hoverText.setVisible(true);
+        }
+        else{
+            hoverText.setText("Name:\nHP:\nAP:");
+            hoverText.setVisible(false);
+        }
+    }
 
     public void updateInfo(Piece piece, int curX, int curY)
     {

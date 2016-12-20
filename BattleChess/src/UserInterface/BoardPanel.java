@@ -17,7 +17,6 @@ public class BoardPanel extends JPanel {
     GameManager gameManager;
     InfoPanel infoPanel;
     GameFrame frame;
-    Point selected;
 
     public BoardPanel(GameManager gameManager, InfoPanel infoPanel, GameFrame frame){
         super();
@@ -47,6 +46,16 @@ public class BoardPanel extends JPanel {
         defaultLook();
     }
 
+    private class MyMouseListener extends MouseAdapter{
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            super.mouseEntered(e);
+
+            PieceButton source = (PieceButton) e.getSource();
+            infoPanel.updateHover(source.piece);
+        }
+    }
+
     public class PieceButton extends JButton{
 
         protected int curX, curY;
@@ -57,6 +66,7 @@ public class BoardPanel extends JPanel {
             this.curY = curY;
             this.piece = piece;
             addActionListener(frame);
+            addMouseListener(new MyMouseListener());
         }
     }
 

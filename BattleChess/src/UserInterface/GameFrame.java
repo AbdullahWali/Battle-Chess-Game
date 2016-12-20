@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Ege & Wali on 12.12.2016.
@@ -28,7 +30,6 @@ public class GameFrame extends JFrame implements ActionListener{
         BoardPanel.PieceButton source = (BoardPanel.PieceButton) e.getSource();
 
         boardPanel.reDraw();
-
 
         if (!infoPanel.targetSkillActivated) {
             if (selected != null) {
@@ -58,10 +59,20 @@ public class GameFrame extends JFrame implements ActionListener{
         //Reset The Ability Click
         infoPanel.targetSkillActivated = false;
 
-        boardPanel.consoleDraw();
+        //boardPanel.consoleDraw();
         validate();
         repaint();
     }
+
+    /*private class MyMouseListener extends MouseAdapter{
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            super.mouseEntered(e);
+
+            BoardPanel.PieceButton source = (BoardPanel.PieceButton) e.getSource();
+            infoPanel.updateHover(source.piece);
+        }
+    }*/
 
 
 
@@ -136,6 +147,8 @@ public class GameFrame extends JFrame implements ActionListener{
 
         getContentPane().add(elimination);
         getContentPane().add(assassination);
+
+       // boardPanel.addMouseListener(new MyMouseListener());
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
