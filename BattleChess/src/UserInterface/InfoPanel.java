@@ -42,7 +42,7 @@ public class InfoPanel extends JPanel {
                         return;
                     }
                     else if (!ability.isTargeted()) {
-                        piece.getAbility().useAbility(gameManager.getGameBoard(), curX, curY);
+                        gameManager.useAbility(curX, curY);
                     }
                     else if (ability.isTargeted() && !targetSkillActivated) {
                         targetSkillActivated = true;

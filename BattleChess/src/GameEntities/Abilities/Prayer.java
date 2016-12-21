@@ -29,7 +29,7 @@ public class Prayer extends Ability {
         //loop over a square around curX,curY
         for (int i = curX - 1; i <= curX +1; i++ ) {
             for (int j = curY - 1; j <= curY +1; j++ ) {
-                if ( i != curX && j!=curY ) {
+                if ( i != curX || j!=curY ) {
                     Piece piece = board.getPiece(i,j);
                     if (piece != null && piece.getColor() == curColour)
                         piece.changeHP(20);

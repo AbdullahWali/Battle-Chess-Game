@@ -92,6 +92,14 @@ public class GameManager
         }
     }
 
+    public boolean useAbility( int... coordinates) {
+        if (gameBoard.getPiece(coordinates[0], coordinates[1]).getAbility().useAbility(gameBoard, coordinates)) {
+            endTurn();
+            return true;
+        }
+        return false;
+    }
+
     private void move( int curX, int curY, int tarX, int tarY )
     {
         Piece selectedPiece = gameBoard.getPiece(curX,curY);

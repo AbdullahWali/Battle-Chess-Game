@@ -158,20 +158,9 @@ public class BoardPanel extends JPanel {
     public void defaultLook(){
         for(int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if(pieceArray[i][j].piece != null){
-                    if(pieceArray[i][j].piece.getColor() == 1){
-                        pieceArray[i][j].setBackground(Color.white);
-                        pieceArray[i][j].setForeground(Color.black);
-                    }
-                    else{
-                        pieceArray[i][j].setBackground(Color.black);
-                        pieceArray[i][j].setForeground(Color.white);
-                    }
-                }
-                else{
-                    pieceArray[i][j].setBackground(Color.gray);
-                }
+                pieceArray[i][j].setBackground(Color.gray);
             }
         }
     }
+
 }

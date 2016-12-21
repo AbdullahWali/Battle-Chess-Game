@@ -52,8 +52,14 @@ public class GameFrame extends JFrame implements ActionListener{
         else if (infoPanel.targetSkillActivated && (source.curX != infoPanel.curX || source.curY != infoPanel.curY)) {
             int tarX = source.curX;
             int tarY = source.curY;
-            gameManager.getGameBoard().getPiece(infoPanel.curX, infoPanel.curY).getAbility().useAbility(gameManager.getGameBoard(), infoPanel.curX, infoPanel.curY, tarX, tarY );
-            boardPanel.reDraw();
+            //gameManager.getGameBoard().getPiece(infoPanel.curX, infoPanel.curY).getAbility().useAbility(gameManager.getGameBoard(), infoPanel.curX, infoPanel.curY, tarX, tarY );
+            if ( gameManager.useAbility( infoPanel.curX, infoPanel.curY, tarX, tarY )) {
+                selected = null;
+                boardPanel.reDraw();
+            }
+            else {
+                boardPanel.highlight(infoPanel.curX,infoPanel.curY, gameManager.getGameBoard().getPiece(infoPanel.curX,infoPanel.curY));
+            }
         }
 
         //Reset The Ability Click
