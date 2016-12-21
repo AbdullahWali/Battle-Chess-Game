@@ -97,6 +97,17 @@ public class GameFrame extends JFrame implements ActionListener{
         setResizable(false);
 
         elimination = new JButton("Elimination");
+        elimination.setVerticalTextPosition(SwingConstants.BOTTOM);
+        elimination.setHorizontalTextPosition(SwingConstants.CENTER);
+        elimination.setBackground(Color.gray);
+        elimination.setFocusPainted(false);
+        //Set up Image for Elim
+        ImageIcon elimIcon = new ImageIcon(getClass().getResource("/assets/elimination.png"));
+        Image img = elimIcon.getImage() ;
+        Image newimg = img.getScaledInstance( 200, 200,  java.awt.Image.SCALE_SMOOTH ) ;
+        elimIcon = new ImageIcon( newimg );
+        elimination.setIcon(elimIcon);
+        //Set Listener
         elimination.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,6 +136,17 @@ public class GameFrame extends JFrame implements ActionListener{
         });
 
         assassination = new JButton("Assassination");
+        assassination.setVerticalTextPosition(SwingConstants.BOTTOM);
+        assassination.setHorizontalTextPosition(SwingConstants.CENTER);
+        assassination.setBackground(Color.gray);
+        assassination.setFocusPainted(false);
+        //Set up Image for Elim
+        ImageIcon assasIcon = new ImageIcon(getClass().getResource("/assets/assassination.png"));
+        img = assasIcon.getImage() ;
+        newimg = img.getScaledInstance( 200, 200,  java.awt.Image.SCALE_SMOOTH ) ;
+        assasIcon = new ImageIcon( newimg );
+        assassination.setIcon(assasIcon);
+        //Set Listener
         assassination.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
