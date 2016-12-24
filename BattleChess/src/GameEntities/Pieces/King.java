@@ -1,5 +1,7 @@
 package GameEntities.Pieces;
 
+import GameEntities.Abilities.Inspire;
+
 public class King extends  Piece
 {
     public King (int color)
@@ -7,8 +9,10 @@ public class King extends  Piece
         this.color = color;
         this.maxHp = 200;
         this.hp = maxHp;
-        this.ap = 100;
+        this.ap = 80;
         this.normalAP = ap;
+
+        this.skill = new Inspire();
 
     }
 

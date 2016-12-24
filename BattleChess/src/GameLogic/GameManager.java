@@ -174,6 +174,7 @@ public class GameManager
     private void endTurn()
     {
         gameBoard.cleanBoard();
+
         if (isGameOver())
         {
             frame.dispose();

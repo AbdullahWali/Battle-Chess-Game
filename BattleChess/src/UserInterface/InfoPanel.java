@@ -5,12 +5,9 @@ import GameEntities.Pieces.King;
 import GameEntities.Pieces.Pawn;
 import GameEntities.Pieces.Piece;
 import GameLogic.GameManager;
-import com.sun.deploy.panel.JSmartTextArea;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Ege & Wali on 15.12.2016.
@@ -19,7 +16,9 @@ public class InfoPanel extends JPanel {
 
     private GameManager gameManager;
     private JTextArea infoText;
-    public JTextArea hoverText;
+    private JTextArea hoverText;
+    private JTextArea gameText;
+
     private JButton skillButton;
     private Piece piece;
     int curX, curY, tarX, tarY;
@@ -27,6 +26,7 @@ public class InfoPanel extends JPanel {
 
     public InfoPanel (GameManager gameManager, BoardPanel boardPanel){
         this.gameManager = gameManager;
+        gameText = new JTextArea();
         infoText = new JTextArea();
         hoverText = new JTextArea();
         skillButton = new JButton("Use Ability");
@@ -36,11 +36,11 @@ public class InfoPanel extends JPanel {
         targetSkillActivated = false;
         setBackground(Color.WHITE);
 
-
         ImageIcon abilityIcon = new ImageIcon(getClass().getResource("/assets/useAbility.png"));
         Image img = abilityIcon.getImage() ;
         img = img.getScaledInstance( 70, 70,  java.awt.Image.SCALE_SMOOTH ) ;
         abilityIcon = new ImageIcon( img );
+
         skillButton.setIcon(abilityIcon);
         skillButton.setContentAreaFilled(false);
         skillButton.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -66,12 +66,26 @@ public class InfoPanel extends JPanel {
             }
         });
 
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(4, 1));
         setPreferredSize(new Dimension(100, 800));
 
+        add(gameText);
         add(hoverText);
         add(infoText);
         add(skillButton);
+    }
+
+    public void updateGame(){
+        if(gameManager.getTurn() == 1){
+            gameText.setText("Turn: White" + "\n\nSkill: " + piece.getAbility().getDesc());
+            gameText.setBackground(Color.WHITE);
+            gameText.setForeground(Color.BLACK);
+        }
+        else if (gameManager.getTurn() == 0){
+            gameText.setText("Turn: Black" + "\n\nSkill: " + piece.getAbility().getDesc());
+            gameText.setBackground(Color.BLACK);
+            gameText.setForeground(Color.WHITE);
+        }
     }
 
 
@@ -106,7 +120,7 @@ public class InfoPanel extends JPanel {
         this.curX = curX;
         this.curY  = curY;
 
-
+        updateGame();
 
         infoText.setVisible(true);
         if(piece instanceof Pawn || piece instanceof King){

@@ -153,13 +153,10 @@ public class GameFrame extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameManager = new GameManager(GameManager.GameMode.ASSASSINATION,self);
-
                 infoPanel = new InfoPanel(gameManager, self.boardPanel);
-
                 boardPanel = new BoardPanel(gameManager, infoPanel, self);
 
                 setLayout(new BorderLayout());
-
 
                 boardPanel.setVisible(true);
                 infoPanel.setVisible(true);

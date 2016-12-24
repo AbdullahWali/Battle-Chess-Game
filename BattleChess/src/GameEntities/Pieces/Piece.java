@@ -64,4 +64,12 @@ public abstract class  Piece
         ap = normalAP;
     }
 
+    public void increaseAP(int amount){
+        ap = ap + amount;
+    }
+
+    public int getNormalAP(){
+        return normalAP;
+    }
+
 }

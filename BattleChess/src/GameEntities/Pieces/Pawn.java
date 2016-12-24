@@ -1,5 +1,7 @@
 package GameEntities.Pieces;
 
+import GameEntities.Abilities.Accolade;
+
 public class Pawn extends Piece
 {
     public Pawn (int color)
@@ -10,6 +12,7 @@ public class Pawn extends Piece
         this.ap = 20;
         this.normalAP = ap;
 
+        this.skill = new Accolade();
     }
 
     @Override
