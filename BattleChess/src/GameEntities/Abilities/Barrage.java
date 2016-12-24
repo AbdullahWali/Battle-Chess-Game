@@ -15,6 +15,7 @@ public class Barrage extends Ability{
         cooldown = 6;
         cooldownLeft = 0;
         name = this.getClass().getSimpleName();
+        desc = "The Queen can Barrage an area that it can attack. When a square is barraged, that square and every square neighbouring it receives 20 damage if it is occupied by an enemy.";
     }
 
     @Override

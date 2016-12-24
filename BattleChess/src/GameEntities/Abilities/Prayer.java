@@ -14,6 +14,7 @@ public class Prayer extends Ability {
         cooldown = 10;
         cooldownLeft = 0;
         name = this.getClass().getSimpleName();
+        desc = "The Bishop heals friendly pieces in a square around him by 20 HP. A piece’s HP cannot increase past its initial HP";
     }
 
     @Override

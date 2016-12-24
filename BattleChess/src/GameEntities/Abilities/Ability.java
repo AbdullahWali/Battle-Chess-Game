@@ -8,6 +8,7 @@ public abstract class Ability {
     protected int cooldown;
     protected int cooldownLeft;
     protected String name;
+    protected String desc;
 
 
     //Methods

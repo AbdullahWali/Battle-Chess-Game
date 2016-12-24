@@ -16,6 +16,7 @@ public class Fortify extends Ability {
         cooldown = 6;
         cooldownLeft = 0;
         name = this.getClass().getSimpleName();
+        desc = "The Rook fortifies itself for 1 future attack and reduces the incoming attack by %75. This effect can stack if the Rook have unused charges on it.";
     }
 
     @Override

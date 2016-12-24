@@ -14,6 +14,7 @@ public class Whirlwind extends Ability {
         cooldown = 6;
         cooldownLeft = 0;
         name = this.getClass().getSimpleName();
+        desc = "The Knight deals 25 damage to enemies in a square around him.";
     }
 
     @Override
