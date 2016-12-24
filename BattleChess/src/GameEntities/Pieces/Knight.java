@@ -10,6 +10,8 @@ public class Knight extends Piece
         this.maxHp = 125;
         this.hp = maxHp;
         this.ap = 50;
+        this.normalAP = ap;
+
         this.skill = new Whirlwind();
     }
 

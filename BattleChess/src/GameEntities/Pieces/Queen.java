@@ -10,6 +10,8 @@ public class Queen  extends Piece
         this.maxHp = 200;
         this.hp = maxHp;
         this.ap = 50;
+        this.normalAP = ap;
+
         this.skill = new Barrage();
     }
 

@@ -8,6 +8,8 @@ public class Pawn extends Piece
         this.maxHp = 50;
         this.hp = maxHp;
         this.ap = 20;
+        this.normalAP = ap;
+
     }
 
     @Override

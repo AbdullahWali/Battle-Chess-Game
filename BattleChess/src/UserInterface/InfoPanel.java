@@ -1,6 +1,8 @@
 package UserInterface;
 
 import GameEntities.Abilities.Ability;
+import GameEntities.Pieces.King;
+import GameEntities.Pieces.Pawn;
 import GameEntities.Pieces.Piece;
 import GameLogic.GameManager;
 import com.sun.deploy.panel.JSmartTextArea;
@@ -67,8 +69,8 @@ public class InfoPanel extends JPanel {
         setLayout(new GridLayout(3, 1));
         setPreferredSize(new Dimension(100, 800));
 
-        add(infoText);
         add(hoverText);
+        add(infoText);
         add(skillButton);
     }
 
@@ -78,14 +80,23 @@ public class InfoPanel extends JPanel {
         hoverText.setText("asd");
 
         if(piece != null) {
-            hoverText.setText("Name: " + piece.getClass().getSimpleName() +
-                    "\nHP: " + piece.getHP() +
-                    "\nAP: " + piece.getAP());
-            hoverText.setVisible(true);
+            if(piece instanceof Pawn || piece instanceof King) {
+                hoverText.setText("Name: " + piece.getClass().getSimpleName() +
+                        "\nHP: " + piece.getHP() +
+                        "\nAP: " + piece.getAP() +
+                        "\nCD: Passive");
+                hoverText.setVisible(true);
+            }else{
+                hoverText.setText("Name: " + piece.getClass().getSimpleName() +
+                        "\nHP: " + piece.getHP() +
+                        "\nAP: " + piece.getAP() +
+                        "\nCD: " + piece.getAbility().getCooldownLeft());
+                hoverText.setVisible(true);
+            }
         }
         else{
-            hoverText.setText("Name:\nHP:\nAP:");
-            hoverText.setVisible(false);
+            hoverText.setText("Name:\nHP:\nAP:\nCD:");
+           // hoverText.setVisible(false);
         }
     }
 
@@ -95,17 +106,27 @@ public class InfoPanel extends JPanel {
         this.curX = curX;
         this.curY  = curY;
 
-        infoText.setText("Name: " + piece.getClass().getSimpleName() +
-        "\nHP: " + piece.getHP() +
-        "\nAP: " + piece.getAP());
+
 
         infoText.setVisible(true);
-        skillButton.setVisible(true);
+        if(piece instanceof Pawn || piece instanceof King){
+            infoText.setText("Name: " + piece.getClass().getSimpleName() +
+                    "\nHP: " + piece.getHP() +
+                    "\nAP: " + piece.getAP() +
+                    "\nCD: Passive");
+            skillButton.setVisible(false);
+        }else {
+            infoText.setText("Name: " + piece.getClass().getSimpleName() +
+                    "\nHP: " + piece.getHP() +
+                    "\nAP: " + piece.getAP() +
+                    "\nCD: " + piece.getAbility().getCooldownLeft());
+            skillButton.setVisible(true);
+        }
     }
 
     public void clearInfo(){
         piece = null;
-        infoText.setText("");
+        infoText.setText("Name:\nHP:\nAP:\nCD:");
         infoText.setVisible(false);
         skillButton.setVisible(false);
     }

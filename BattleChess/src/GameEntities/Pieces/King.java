@@ -8,6 +8,8 @@ public class King extends  Piece
         this.maxHp = 200;
         this.hp = maxHp;
         this.ap = 100;
+        this.normalAP = ap;
+
     }
 
     @Override

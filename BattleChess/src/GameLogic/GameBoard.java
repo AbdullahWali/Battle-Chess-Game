@@ -77,7 +77,8 @@ public class GameBoard
                         removePiece(i, j);
                     }
                     else{
-                        //curPiece.getAbility().updateCooldown();
+                        if(curPiece instanceof Bishop || curPiece instanceof Knight || curPiece instanceof  Queen ||  curPiece instanceof Rook)
+                            curPiece.getAbility().updateCooldown();
                     }
                 }
             }

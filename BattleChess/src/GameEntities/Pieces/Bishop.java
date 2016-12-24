@@ -10,6 +10,7 @@ public class Bishop extends Piece
         this.maxHp = 100;
         this.hp = maxHp;
         this.ap = 20;
+        this.normalAP = ap;
         this.skill = new Prayer();
     }
 

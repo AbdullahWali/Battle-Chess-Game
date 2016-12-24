@@ -8,6 +8,7 @@ public abstract class  Piece
     protected int ap;
     protected int color;
     protected Ability skill;
+    protected int normalAP;
 
     //Methods
     public boolean isValid (int curX, int curY, int tarX, int tarY)
@@ -37,6 +38,8 @@ public abstract class  Piece
         }
     }
 
+
+
     public int getColor()
     {
         return color;
@@ -55,6 +58,10 @@ public abstract class  Piece
     public Ability getAbility()
     {
         return skill;
+    }
+
+    public void resetAP(){
+        ap = normalAP;
     }
 
 }
