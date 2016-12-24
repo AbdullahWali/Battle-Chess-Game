@@ -1,6 +1,7 @@
 package GameLogic;
 import GameEntities.Pieces.King;
 import GameEntities.Pieces.Knight;
+import GameEntities.Pieces.Pawn;
 import GameEntities.Pieces.Piece;
 
 import java.awt.*;
@@ -122,6 +123,13 @@ public class GameManager
         }
 
         gameBoard.movePiece(curX, curY, tarX, tarY);
+        //Check for Pawn upgrades
+        if (gameBoard.getPiece(tarX,tarY).getColor() == 1 && tarX == 0 && gameBoard.getPiece(tarX,tarY) instanceof Pawn) {
+            gameBoard.promotePawn(tarX, tarY);
+        }
+        if (gameBoard.getPiece(tarX,tarY).getColor() == 0 && tarX == 7 && gameBoard.getPiece(tarX,tarY) instanceof Pawn) {
+            gameBoard.promotePawn(tarX, tarY);
+        }
         endTurn();
     }
 

@@ -83,4 +83,9 @@ public class GameBoard
             }
         }
     }
+
+    public void promotePawn(int tarX, int tarY) {
+        if (getPiece(tarX,tarY) instanceof  Pawn)
+            board[tarX][tarY] = new Knight(getPiece(tarX,tarY).getColor());
+    }
 }

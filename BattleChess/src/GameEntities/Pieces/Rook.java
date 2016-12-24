@@ -1,5 +1,7 @@
 package GameEntities.Pieces;
 
+import GameEntities.Abilities.Fortify;
+
 public class Rook extends Piece
 {
     public Rook (int color)
@@ -8,6 +10,29 @@ public class Rook extends Piece
         this.maxHp = 100;
         this.hp = maxHp;
         this.ap = 20;
+        this.skill = new Fortify();
+    }
+
+    public void changeHP (int amount)
+    {
+        //If Heal, continue as normal
+        if (amount >= 0) {
+            super.changeHP(amount);
+            return;
+        }
+
+        //If attack
+        int newAmount =  (int)(amount*0.75);
+        Fortify fortSkill = (Fortify)skill;
+        if (fortSkill.fortifies == 0) {
+            super.changeHP(amount);
+            return;
+        }
+        else {
+            super.changeHP(newAmount);
+            fortSkill.fortifies--;
+            return;
+        }
     }
 
     @Override

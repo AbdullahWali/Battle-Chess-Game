@@ -28,26 +28,33 @@ public class InfoPanel extends JPanel {
         infoText = new JTextArea();
         hoverText = new JTextArea();
         skillButton = new JButton("Use Ability");
+        skillButton.setVisible(false);
         tarX = -1;
         tarY = -1;
         targetSkillActivated = false;
+        setBackground(Color.WHITE);
 
 
-        skillButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(piece != null){
-                    Ability ability =  piece.getAbility();
-                    if (ability == null || ability.isPassive()) {
-                        return;
-                    }
-                    else if (!ability.isTargeted()) {
-                        gameManager.useAbility(curX, curY);
-                    }
-                    else if (ability.isTargeted() && !targetSkillActivated) {
-                        targetSkillActivated = true;
-                        boardPanel.skillHighlight(curX, curY, piece);
-                    }
+        ImageIcon abilityIcon = new ImageIcon(getClass().getResource("/assets/useAbility.png"));
+        Image img = abilityIcon.getImage() ;
+        img = img.getScaledInstance( 70, 70,  java.awt.Image.SCALE_SMOOTH ) ;
+        abilityIcon = new ImageIcon( img );
+        skillButton.setIcon(abilityIcon);
+        skillButton.setContentAreaFilled(false);
+        skillButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        skillButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        skillButton.addActionListener(e -> {
+            if(piece != null){
+                Ability ability =  piece.getAbility();
+                if (ability == null || ability.isPassive()) {
+                    return;
+                }
+                else if (!ability.isTargeted()) {
+                    gameManager.useAbility(curX, curY);
+                }
+                else if (ability.isTargeted() && !targetSkillActivated) {
+                    targetSkillActivated = true;
+                    boardPanel.skillHighlight(curX, curY, piece);
                 }
             }
         });
