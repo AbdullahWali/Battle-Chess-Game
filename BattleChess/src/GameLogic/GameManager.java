@@ -97,6 +97,10 @@ public class GameManager
     }
 
     public boolean useAbility( int... coordinates) {
+        if((gameBoard.getPiece(coordinates[0], coordinates[1]).getColor() != getTurn())){
+            System.err.println("Error Ability: wrong color");
+            return false;
+        }
         if (gameBoard.getPiece(coordinates[0], coordinates[1]).getAbility().useAbility(gameBoard, coordinates)) {
             endTurn();
             return true;
