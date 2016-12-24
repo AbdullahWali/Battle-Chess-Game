@@ -47,14 +47,19 @@ public class InfoPanel extends JPanel {
             if(piece != null){
                 Ability ability =  piece.getAbility();
                 if (ability == null || ability.isPassive()) {
-                    return;
+                    boardPanel.frame.boardPanel.defaultLook();
+                    boardPanel.frame.selected = null;
                 }
                 else if (!ability.isTargeted()) {
                     gameManager.useAbility(curX, curY);
+                    boardPanel.frame.boardPanel.defaultLook();
+                    boardPanel.frame.selected = null;
                 }
                 else if (ability.isTargeted() && !targetSkillActivated) {
                     targetSkillActivated = true;
-                    boardPanel.skillHighlight(curX, curY, piece);
+                    if (ability.getCooldownLeft() == 0) {
+                        boardPanel.frame.boardPanel.skillHighlight(curX, curY, piece);
+                    }
                 }
             }
         });

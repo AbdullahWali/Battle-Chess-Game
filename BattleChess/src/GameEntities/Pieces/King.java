@@ -5,7 +5,7 @@ public class King extends  Piece
     public King (int color)
     {
         this.color = color;
-        this.maxHp = 500;
+        this.maxHp = 200;
         this.hp = maxHp;
         this.ap = 100;
     }

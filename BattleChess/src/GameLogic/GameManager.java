@@ -3,11 +3,13 @@ import GameEntities.Pieces.King;
 import GameEntities.Pieces.Knight;
 import GameEntities.Pieces.Pawn;
 import GameEntities.Pieces.Piece;
+import UserInterface.GameFrame;
 
 import java.awt.*;
 
 public class GameManager
 {
+    private GameFrame frame;
     private GameMode gameMode;
     private GameBoard gameBoard;
     private int turn;
@@ -15,8 +17,9 @@ public class GameManager
            ELIMINATION, ASSASSINATION
     }
 
-    public GameManager(GameMode gameMode)
+    public GameManager(GameMode gameMode, GameFrame frame)
     {
+        this.frame = frame;
         this.gameMode = gameMode;
         gameBoard = new GameBoard();
         turn = 1;
@@ -169,8 +172,9 @@ public class GameManager
         gameBoard.cleanBoard();
         if (isGameOver())
         {
-            //TODO: Create game over thingy
-            System.exit(0);
+            frame.dispose();
+            frame = new GameFrame();
+
         }
         turn++;
     }

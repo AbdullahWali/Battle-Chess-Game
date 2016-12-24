@@ -81,14 +81,16 @@ public class GameFrame extends JFrame implements ActionListener{
     }*/
 
 
+    private void setup() {
 
+
+    }
 
     public GameFrame(){
         super();
-
         self = this;
 
-        gameManager = new GameManager(GameManager.GameMode.ASSASSINATION);
+        gameManager = new GameManager(GameManager.GameMode.ASSASSINATION,this);
         infoPanel = new InfoPanel(gameManager, self.boardPanel);
         boardPanel = new BoardPanel(gameManager, infoPanel, this);
 
@@ -111,7 +113,7 @@ public class GameFrame extends JFrame implements ActionListener{
         elimination.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameManager = new GameManager(GameManager.GameMode.ELIMINATION);
+                gameManager = new GameManager(GameManager.GameMode.ELIMINATION,self);
 
                 infoPanel = new InfoPanel(gameManager, self.boardPanel);
 
@@ -150,7 +152,7 @@ public class GameFrame extends JFrame implements ActionListener{
         assassination.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameManager = new GameManager(GameManager.GameMode.ASSASSINATION);
+                gameManager = new GameManager(GameManager.GameMode.ASSASSINATION,self);
 
                 infoPanel = new InfoPanel(gameManager, self.boardPanel);
 
@@ -176,7 +178,6 @@ public class GameFrame extends JFrame implements ActionListener{
         getContentPane().add(elimination);
         getContentPane().add(assassination);
 
-       // boardPanel.addMouseListener(new MyMouseListener());
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
