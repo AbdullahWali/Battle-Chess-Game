@@ -53,6 +53,8 @@ public class BoardPanel extends JPanel {
 
             PieceButton source = (PieceButton) e.getSource();
             infoPanel.updateHover(source.piece);
+            infoPanel.updateTurnText();
+
         }
     }
 
@@ -131,6 +133,9 @@ public class BoardPanel extends JPanel {
     }
 
     public void highlight(int curX, int curY, Piece piece){
+        if (gameManager.getTurn() != gameManager.getGameBoard().getPiece(curX,curY).getColor()){
+            return;
+        }
         for(int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
                 if(piece.isValid(curX, curY, i, j)){

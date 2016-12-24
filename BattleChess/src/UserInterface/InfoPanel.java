@@ -14,6 +14,7 @@ import java.awt.*;
  */
 public class InfoPanel extends JPanel {
 
+    private JLabel turnText;
     private GameManager gameManager;
     private JTextArea infoText;
     private JTextArea hoverText;
@@ -21,18 +22,23 @@ public class InfoPanel extends JPanel {
 
     private JButton skillButton;
     private Piece piece;
-    int curX, curY, tarX, tarY;
+    int curX, curY;
     boolean targetSkillActivated;
 
     public InfoPanel (GameManager gameManager, BoardPanel boardPanel){
         this.gameManager = gameManager;
+        turnText = new JLabel();
+        turnText.setHorizontalTextPosition(SwingConstants.CENTER);
+        turnText.setOpaque(true);
         gameText = new JTextArea();
+        gameText.setWrapStyleWord(true);
+        gameText.setLineWrap(true);
         infoText = new JTextArea();
         hoverText = new JTextArea();
+        hoverText.setEnabled(false);
+        hoverText.setDisabledTextColor(Color.RED);
         skillButton = new JButton("Use Ability");
         skillButton.setVisible(false);
-        tarX = -1;
-        tarY = -1;
         targetSkillActivated = false;
         setBackground(Color.WHITE);
 
@@ -67,32 +73,45 @@ public class InfoPanel extends JPanel {
         });
 
         setLayout(new GridLayout(4, 1));
-        setPreferredSize(new Dimension(100, 800));
+        setPreferredSize(new Dimension(120, 800));
 
-        add(gameText);
+        JPanel turnGameText = new JPanel();
+        turnGameText.setBackground(Color.white);
+        turnGameText.add(turnText);
+        turnGameText.add(gameText);
+
+
+        add(turnGameText);
         add(hoverText);
         add(infoText);
         add(skillButton);
     }
 
-    public void updateGame(){
+    public void updateTurnText(){
         if(gameManager.getTurn() == 1){
-            gameText.setText("Turn: White" + "\n\nSkill: " + piece.getAbility().getDesc());
-            gameText.setBackground(Color.WHITE);
-            gameText.setForeground(Color.BLACK);
+            turnText.setText("White's Turn");
+            turnText.setForeground(Color.gray);
+
         }
         else if (gameManager.getTurn() == 0){
-            gameText.setText("Turn: Black" + "\n\nSkill: " + piece.getAbility().getDesc());
-            gameText.setBackground(Color.BLACK);
-            gameText.setForeground(Color.WHITE);
+            turnText.setText("Black's Turn");
+            turnText.setForeground(Color.black);
+        }
+    }
+
+    public void updateSkillDesc(Piece piece)  {
+        if (piece != null) {
+            gameText.setText("Skill: " + piece.getAbility().getDesc());
+        }
+        else {
+            gameText.setText("");
         }
     }
 
 
     public void updateHover(Piece piece){
 
-        hoverText.setText("asd");
-
+        updateSkillDesc(piece);
         if(piece != null) {
             if(piece instanceof Pawn || piece instanceof King) {
                 hoverText.setText("Name: " + piece.getClass().getSimpleName() +
@@ -120,10 +139,11 @@ public class InfoPanel extends JPanel {
         this.curX = curX;
         this.curY  = curY;
 
-        updateGame();
+        updateTurnText();
 
         infoText.setVisible(true);
-        if(piece instanceof Pawn || piece instanceof King){
+
+        if(piece.getAbility().isPassive()){
             infoText.setText("Name: " + piece.getClass().getSimpleName() +
                     "\nHP: " + piece.getHP() +
                     "\nAP: " + piece.getAP() +
@@ -134,7 +154,12 @@ public class InfoPanel extends JPanel {
                     "\nHP: " + piece.getHP() +
                     "\nAP: " + piece.getAP() +
                     "\nCD: " + piece.getAbility().getCooldownLeft());
-            skillButton.setVisible(true);
+            if(piece.getAbility().getCooldownLeft() == 0) {
+                skillButton.setVisible(true);
+            }
+            else {
+                skillButton.setVisible(false);
+            }
         }
     }
 
